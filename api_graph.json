@@ -1,0 +1,415 @@
+{
+ "115": {
+  "inputs": {
+   "aspect_ratio": "21:9 (Ultrawide)",
+   "megapixels": 2,
+   "multiple": 32
+  },
+  "class_type": "ResolutionSelector",
+  "_meta": {
+   "title": "Resolution Selector (Size)"
+  }
+ },
+ "119": {
+  "inputs": {
+   "vae_name": "_h3/vae/minimax_h3_t1_image_vae_step1597.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "120": {
+  "inputs": {
+   "vae_name": "_h3/vae/minimax_h3_audio_vae_fp32.safetensors"
+  },
+  "class_type": "VAELoader",
+  "_meta": {
+   "title": "Load VAE"
+  }
+ },
+ "121": {
+  "inputs": {
+   "samples": [
+    "125",
+    0
+   ],
+   "vae": [
+    "120",
+    0
+   ]
+  },
+  "class_type": "VAEDecodeAudio",
+  "_meta": {
+   "title": "VAE Decode Audio"
+  }
+ },
+ "122": {
+  "inputs": {
+   "samples": [
+    "158",
+    0
+   ],
+   "vae": [
+    "119",
+    0
+   ]
+  },
+  "class_type": "VAEDecode",
+  "_meta": {
+   "title": "VAE Decode"
+  }
+ },
+ "123": {
+  "inputs": {
+   "sampler_name": "sa_solver"
+  },
+  "class_type": "KSamplerSelect",
+  "_meta": {
+   "title": "KSamplerSelect"
+  }
+ },
+ "124": {
+  "inputs": {
+   "scheduler": "simple",
+   "steps": 8,
+   "denoise": 1,
+   "model": [
+    "645",
+    0
+   ]
+  },
+  "class_type": "BasicScheduler",
+  "_meta": {
+   "title": "BasicScheduler"
+  }
+ },
+ "125": {
+  "inputs": {
+   "noise": [
+    "129",
+    0
+   ],
+   "guider": [
+    "126",
+    0
+   ],
+   "sampler": [
+    "123",
+    0
+   ],
+   "sigmas": [
+    "124",
+    0
+   ],
+   "latent_image": [
+    "649",
+    0
+   ]
+  },
+  "class_type": "SamplerCustomAdvanced",
+  "_meta": {
+   "title": "SamplerCustomAdvanced"
+  }
+ },
+ "126": {
+  "inputs": {
+   "model": [
+    "645",
+    0
+   ],
+   "conditioning": [
+    "648",
+    0
+   ]
+  },
+  "class_type": "BasicGuider",
+  "_meta": {
+   "title": "Basic Guider"
+  }
+ },
+ "129": {
+  "inputs": {
+   "noise_seed": [
+    "142",
+    0
+   ]
+  },
+  "class_type": "RandomNoise",
+  "_meta": {
+   "title": "RandomNoise"
+  }
+ },
+ "131": {
+  "inputs": {
+   "expression": "1",
+   "values.a": [
+    "132",
+    0
+   ]
+  },
+  "class_type": "ComfyMathExpression",
+  "_meta": {
+   "title": "Math Expression"
+  }
+ },
+ "132": {
+  "inputs": {
+   "value": 3
+  },
+  "class_type": "PrimitiveFloat",
+  "_meta": {
+   "title": "Video Duration"
+  }
+ },
+ "136": {
+  "inputs": {
+   "prompt": [
+    "138",
+    0
+   ],
+   "width": [
+    "626",
+    0
+   ],
+   "height": [
+    "628",
+    0
+   ],
+   "length": [
+    "131",
+    1
+   ],
+   "ref_image_size": "match",
+   "clip": [
+    "661",
+    0
+   ],
+   "vae": [
+    "119",
+    0
+   ],
+   "audio_vae": [
+    "120",
+    0
+   ],
+   "ref_images.ref_image_0": [
+    "137",
+    0
+   ],
+   "ref_images.ref_image_1": [
+    "139",
+    0
+   ]
+  },
+  "class_type": "MiniMaxH3ReferenceToVideo",
+  "_meta": {
+   "title": "MiniMax H3 Reference to Video"
+  }
+ },
+ "137": {
+  "inputs": {
+   "image": "henkref_car_hi.jpg"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "[MAC: BYPASSED] LoadImage - set your own reference image, then enable"
+  }
+ },
+ "138": {
+  "inputs": {
+   "value": "Task: Reference-guided generation. Generate a new photograph of the car from <Picture 1> carrying the sponsor wordmark from <Picture 2> as a vinyl decal on its near-side doors.\n\n<Picture 1> is the vehicle and scene reference. Preserve the car's identity, body shape and proportions, white paint, wheels, chrome window trim, badges, mirrors, headlights, the yellow Dutch number plate reading 36-XX-LF, the background, the ground surface, the lighting direction, and the camera framing from <Picture 1>. Copy the car and the background from <Picture 1> exactly; do not substitute, simplify, restyle, or redesign them.\n\n<Picture 2> is the wordmark reference and supplies nothing else. It does not supply a scene, a background, a colour scheme, or lighting. Reproduce its brush-script letterforms exactly, letter for letter, with the same proportions and the same stroke weights.\n\nRender that wordmark as a matte black vinyl decal applied flat to the front and rear near-side doors, centred between the wheel arches, its baseline level with the door handles, spanning most of the width of both doors together. The decal follows the doors' curvature, dims where the bodywork turns away from the light, and the vertical door shut line cuts across it exactly as it would across real vinyl.\n\nA single coherent ultrawide photograph shows the complete car in daylight.\n"
+  },
+  "class_type": "PrimitiveStringMultiline",
+  "_meta": {
+   "title": "Input Text (Prompt)"
+  }
+ },
+ "139": {
+  "inputs": {
+   "image": "henk_stake_logo.png"
+  },
+  "class_type": "LoadImage",
+  "_meta": {
+   "title": "Load Image"
+  }
+ },
+ "142": {
+  "inputs": {
+   "seed": 71801
+  },
+  "class_type": "easy seed",
+  "_meta": {
+   "title": "Click \"Manual Random Seed\" to start Gens!"
+  }
+ },
+ "146": {
+  "inputs": {
+   "value": 60
+  },
+  "class_type": "PrimitiveFloat",
+  "_meta": {
+   "title": "Target Interpolated FPS"
+  }
+ },
+ "148": {
+  "inputs": {
+   "any_01": [
+    "146",
+    0
+   ],
+   "any_02": [
+    "149",
+    0
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "Framerate"
+  }
+ },
+ "149": {
+  "inputs": {
+   "value": 24
+  },
+  "class_type": "PrimitiveFloat",
+  "_meta": {
+   "title": "Framerate (Default 24)"
+  }
+ },
+ "158": {
+  "inputs": {
+   "anything": [
+    "125",
+    0
+   ]
+  },
+  "class_type": "easy cleanGpuUsed",
+  "_meta": {
+   "title": "Clean VRAM Used"
+  }
+ },
+ "626": {
+  "inputs": {
+   "any_01": [
+    "115",
+    0
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "Width"
+  }
+ },
+ "628": {
+  "inputs": {
+   "any_01": [
+    "115",
+    1
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "Height"
+  }
+ },
+ "645": {
+  "inputs": {
+   "any_01": [
+    "666",
+    0
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "Chosen Model"
+  }
+ },
+ "648": {
+  "inputs": {
+   "any_01": [
+    "136",
+    0
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "CONDITIONING"
+  }
+ },
+ "649": {
+  "inputs": {
+   "any_01": [
+    "136",
+    1
+   ]
+  },
+  "class_type": "Any Switch (rgthree)",
+  "_meta": {
+   "title": "LATENT"
+  }
+ },
+ "661": {
+  "inputs": {
+   "clip_name": "_h3/qwen3vl_8b_fp8_scaled.safetensors",
+   "type": "minimax",
+   "projection": "mmh3-8b-ClipProj-celeb-mlp.safetensors",
+   "device": "cpu",
+   "mode": "dynamic"
+  },
+  "class_type": "ClipProjLoader",
+  "_meta": {
+   "title": "ClipProj Loader (all-in-one)"
+  }
+ },
+ "663": {
+  "inputs": {
+   "batch_index": 0,
+   "length": 1,
+   "image": [
+    "122",
+    0
+   ]
+  },
+  "class_type": "ImageFromBatch",
+  "_meta": {
+   "title": "Get Image from Batch"
+  }
+ },
+ "664": {
+  "inputs": {
+   "filename_prefix": "h3_edit/h3_edit",
+   "images": [
+    "663",
+    0
+   ]
+  },
+  "class_type": "SaveImage",
+  "_meta": {
+   "title": "Save Image"
+  }
+ },
+ "665": {
+  "inputs": {
+   "unet_name": "_h3/MiniMax-H3-Ref2VA-Pruned-Q5_K_M.gguf"
+  },
+  "class_type": "UnetLoaderGGUF",
+  "_meta": {
+   "title": "Unet Loader (GGUF)"
+  }
+ },
+ "666": {
+  "inputs": {
+   "lora_name": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+   "strength_model": 1,
+   "model": [
+    "665",
+    0
+   ]
+  },
+  "class_type": "LoraLoaderModelOnly",
+  "_meta": {
+   "title": "Load LoRA"
+  }
+ }
+}

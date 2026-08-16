@@ -1,0 +1,133 @@
+# Image Editing Tasks and Prompts
+
+## 1. Depth pose
+
+### Task
+
+Re-create the referenced person while applying a body pose supplied by a depth diagram.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. Generate a new portrait image of the person from <Picture 1>. <Picture 1> is the character appearance reference. Preserve the person's identity, facial features, skin tone and skin texture, hair color, hairstyle and hair length, complete outfit, garment colors, fabrics, patterns, footwear, and accessories. Preserve the background, environment, lighting, and camera framing from <Picture 1>. <Picture 2> does not supply appearance. Copy the face, skin, hair, outfit, and background from <Picture 1> exactly; do not substitute, simplify, restyle, or redesign them. <Picture 2> is the pose reference. Use the body pose, limb positions, torso orientation, head orientation, and body geometry shown in the depth diagram from <Picture 2>. Generate the person from <Picture 1> naturally occupying the pose specified by <Picture 2>. A single coherent 2:3 portrait photograph shows the complete person.
+```
+
+## 2. Outfit, location, and action
+
+### Task
+
+Combine a character, an outfit, and a location from separate references while directing a specific action.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. The adult character from <Picture 1> wears the complete practical outfit from <Picture 2> and walks briskly across the location from <Picture 3>, carrying one paper grocery bag against the torso while glancing toward the camera. <Picture 2> supplies wardrobe only and <Picture 3> supplies the entire background and setting. Replace the original background from <Picture 1> completely with the location from <Picture 3>; retain no scenery or location elements from <Picture 1>. The face, hairstyle, and identity remain recognizably source-authentic. Natural full-body 2:3 portrait photography, grounded feet, coherent perspective and lighting integrated into the new background.
+```
+
+## 3. Character sheet
+
+### Task
+
+Create a consistent three-view photographic character sheet from one character reference.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. A clean photographic character sheet presents the same adult from <Picture 1> in three consistent full-body views: front, side, and rear. Every view has the identical face, hairstyle, body, outfit, and accessories from the source. Neutral relaxed stance, arms clear of the torso, both feet visible in each view, seamless light-gray studio, even lighting, one tall 2:3 portrait canvas, no captions or borders.
+```
+
+## 4. Age 60
+
+### Task
+
+Age the referenced person to exactly 60 years old while preserving identity and composition.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. Render the adult from <Picture 1> at exactly 60 years old while keeping him unmistakably the same person. Preserve the exact facial structure, eye identity, nose, mouth, skin tone, hairstyle shape, complete outfit, pose, background, lighting, and composition from <Picture 1>. Change only age-related features: mature skin texture, wrinkles, subtle facial-volume changes, and plausible hair graying or thinning. One realistic 2:3 portrait photograph.
+```
+
+## 5. Obese body transformation
+
+### Task
+
+Transform the referenced person into a severely obese version while preserving identity, outfit design, pose, and setting.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. Make a dramatic, unmistakable body-size transformation of the adult from <Picture 1>. Keep his identity, face, eyes, hairstyle, expression, skin tone, outfit design, pose, studio background, and photographic style, but do not preserve his original body proportions. Depict him with severe obesity and a very large, heavy body: an extremely large protruding round abdomen, much wider waist and torso, thick upper arms, large hips and thighs, a broad neck, and clearly increased facial fullness. The substantial weight must be immediately obvious across his entire silhouette, with anatomically coherent, realistic fat distribution. He must not look merely broad, muscular, stocky, chubby, or slightly overweight. Resize the jacket, shirt, and trousers so they fit the much larger body realistically. Complete full-body 2:3 portrait, both feet visible.
+```
+
+## 6. Through blinds
+
+### Task
+
+Place the referenced person behind partially open venetian blinds with realistic occlusion and striped light.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. The same recognizable adult from <Picture 1> stands indoors beyond a foreground set of partially open venetian blinds. The camera looks through the slats; alternating horizontal bands occlude small portions of the person and cast plausible striped window light across the face, outfit, and room. Both eyes remain readable through one opening. Source-authentic identity and clothing, physically correct depth and occlusion, cinematic 2:3 portrait photograph.
+```
+
+## 7. Mirror
+
+### Task
+
+Create a physically consistent mirror scene showing both the person and their reflection.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. The recognizable adult from <Picture 1> stands naturally in front of a large vertical dressing mirror in a modest bedroom. One direct three-quarter view and one geometrically correct reflected view show the same person at the same instant. The reflection reverses the visible pose and room consistently, matches the exact face, hair, outfit, expression, and lighting, and contains no extra or missing limbs. The person's torso, shoulders, head, and eyes all face squarely toward the mirror. The camera views him from slightly behind and to one side; he never looks toward the camera. His eyes visibly focus on his own reflected eyes. Realistic 2:3 portrait photograph with the mirror frame fully visible.
+```
+
+## 8. Several characters
+
+### Task
+
+Compose three separately referenced people in one conversational scene while preserving each identity and assigned pose.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. The two distinct adult women from <Picture 1> and <Picture 3> and the adult man from <Picture 2> sit together at one table in the location from <Picture 4>, having a relaxed conversation. Each person retains their own exact identity, face, hairstyle, body build, and outfit without blending. The woman from <Picture 1> speaks and gestures with her raised right hand while her left palm rests on the table. The man from <Picture 2> looks toward her and cradles a mug with both hands. The woman from <Picture 3> also looks toward the speaker, resting her right elbow on the table with that hand near her chin while her left hand stays in her lap. Their arm positions are clearly different and do not mirror one another. Eye lines, seating, hands, table contact, scale, lighting, and perspective agree. Coherent medium-wide 2:3 portrait photograph, all three faces and bodies clearly separated.
+```
+
+## 9. Head swap
+
+### Task
+
+Replace only the base character's head with the head identity from a second reference.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. Generate a new portrait image using <Picture 1> as the base. <Picture 1> supplies the complete body, build, clothing, pose, camera, lighting, and setting. <Picture 2> supplies the head identity: face, facial proportions, skin tone, ears, hairline, hairstyle, and facial hair. Replace only the head from <Picture 1> with the recognizable head from <Picture 2>. Match neck connection, scale, angle, perspective, and lighting naturally. Keep everything below the neck and the full 2:3 portrait composition from <Picture 1>.
+```
+
+## 10. Western cartoon
+
+### Task
+
+Convert the referenced portrait into a contemporary Western cartoon while retaining recognizable visual attributes.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. A clean contemporary Western cartoon illustration depicts the same recognizable adult from <Picture 1>. The exact facial structure, eye shape, hairstyle silhouette, body proportions, outfit design, pose, expression, and source composition remain identifiable. Confident controlled linework, simplified geometric forms, flat color with subtle cel shading, restrained texture, mature editorial-animation styling, single 2:3 portrait composition, no text or decorative frame.
+```
+
+## 11. Three-koma storyboard
+
+### Task
+
+Create a three-panel vertical storyboard with consistent character, wardrobe, setting, and progressive action.
+
+### Exact prompt
+
+```text
+Task: Reference-guided generation. A vertical three-koma storyboard uses three equal stacked panels on one 2:3 portrait canvas. The same adult from <Picture 1> wears the complete outfit from <Picture 2> in the location from <Picture 3> throughout. Panel 1: the character walks along the path and notices a paper map caught on a low branch. Panel 2: the character stretches upward and frees the map with one hand. Panel 3: the character stops, unfolds the map with both hands, and studies it with a pleased small smile. Face, hair, body, clothing, weather, light, camera side, and environment remain stable across all panels; action and expression alone progress. Clean panel gutters, no captions, speech balloons, labels, or text.
+```

@@ -1,0 +1,83 @@
+"""Let MiniMax H3 render a SINGLE frame, without patching ComfyUI's own source.
+
+H3 edits images by rendering one frame of R2V (see ~/h3edit). ComfyUI floors that in two
+places -- `min=5` on the length widget, and align_frame_count(), which snaps anything below 5
+back up to 5 -- so a naive `length=1` silently renders 5 frames, and the single-image VAE puts
+grid artifacts on the result.
+
+This used to be a patch applied to comfy_extras/nodes_minimax_h3.py, which every `git pull`
+silently reverted. Rebinding the three module-level functions from a custom node instead means
+the repo working tree stays clean and there is nothing for a pull to undo. The functions are
+looked up on the module at call time, so rebinding after import takes effect.
+
+Registers H3SingleFrameEnabled purely as a liveness marker: `/object_info/H3SingleFrameEnabled`
+returning 200 proves the rebind ran in the RUNNING process, which is what `h3edit --doctor`
+asks. It is not meant to be wired into a graph.
+"""
+from comfy_extras import nodes_minimax_h3 as h3
+
+_FPS = 24
+_AUDIO_LATENT_FPS = 40
+
+
+def align_frame_count(n):
+    if n <= 1:
+        return 1
+    while n % 17 != 5:
+        n += 1
+    return n
+
+
+def video_latent_t(frame_count):
+    if frame_count <= 1:
+        return 1
+    return 2 if frame_count <= 5 else ((frame_count - 5) // 17) * 5 + 2
+
+
+def temporal_shape(length):
+    frame_count = align_frame_count(max(1, length))
+    duration = frame_count / _FPS
+    return frame_count, video_latent_t(frame_count), round(duration * _AUDIO_LATENT_FPS)
+
+
+h3.align_frame_count = align_frame_count
+h3.video_latent_t = video_latent_t
+h3.temporal_shape = temporal_shape
+
+# The schema floor only bites when `length` is a literal widget value. h3edit drives it through
+# a linked ComfyMathExpression, where ComfyUI validates the connection's type and not the range.
+# Relax it anyway when the schema is reachable, so the GUI accepts 1 too -- best effort, and
+# never fatal, because the shape of io.Schema is not a stable contract.
+_relaxed = []
+try:
+    for name in dir(h3):
+        cls = getattr(h3, name)
+        if not (isinstance(cls, type) and hasattr(cls, "define_schema")):
+            continue
+        for inp in getattr(cls.define_schema(), "inputs", []):
+            if getattr(inp, "id", None) == "length" and getattr(inp, "min", None) == 5:
+                inp.min = 1
+                _relaxed.append(name)
+except Exception as e:                                      # noqa: BLE001
+    print(f"[h3_single_frame] schema floor left at 5 ({e}); linked length still works")
+
+print(f"[h3_single_frame] one-frame H3 enabled; schema relaxed on {_relaxed or 'nothing'}")
+
+
+class H3SingleFrameEnabled:
+    """Liveness marker for h3edit --doctor. Not for use in a graph."""
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {"required": {}}
+
+    RETURN_TYPES = ()
+    FUNCTION = "noop"
+    CATEGORY = "MiniMaxH3"
+
+    def noop(self):
+        return ()
+
+
+NODE_CLASS_MAPPINGS = {"H3SingleFrameEnabled": H3SingleFrameEnabled}
+NODE_DISPLAY_NAME_MAPPINGS = {"H3SingleFrameEnabled": "H3 single-frame patch active"}

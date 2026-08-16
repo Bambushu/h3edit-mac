@@ -1,0 +1,16 @@
+[project]
+name = "h3edit"
+version = "0.1.0"
+description = "Instruction-based image editing on MiniMax H3, locally (one-frame R2V)"
+requires-python = ">=3.10"
+dependencies = ["websocket-client"]
+
+[project.scripts]
+h3edit = "h3edit:main"
+
+[tool.setuptools]
+py-modules = ["h3edit", "export_graph"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
