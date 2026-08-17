@@ -2,8 +2,8 @@
 """h3edit — instruction-based image editing on MiniMax H3, locally.
 
 H3 is a video model. It edits images by rendering ONE FRAME of R2V through a VAE retrained for
-single images. Technique: Patient_Ratio4177, r/StableDiffusion 1vo1ab3 (2026-08-14). Measured
-recipe and failure modes: ~/henkwolf/recipe.md §8.
+single images. Technique: Patient_Ratio4177, r/StableDiffusion 1vo1ab3 (2026-08-14).
+Measured dials and failure modes: README.md.
 
     h3edit "Task: Reference-guided generation. ..." -r car.jpg -r logo.png -o out.png
 

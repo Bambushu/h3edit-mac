@@ -1,0 +1,30 @@
+{
+  "high_level_description": "A small brick shopfront at dusk with a bare wooden signboard mounted above the door, warm interior glow, no lettering anywhere, seen straight on from across the pavement at dusk, dark red brick, black painted door frame, plain sanded timber signboard, centered symmetrical composition, the doorway and the bare signboard sit in the middle of the frame, the signboard just above head height.",
+  "style_description": {
+    "aesthetics": "blue hour, a warm shop interior spilling light onto wet pavement",
+    "lighting": "mixed practical, from inside the shop window, soft diffused light with gradual shadow edges, warm against cool dusk",
+    "photo": "wide shot, full body in the environment, shot at eye level, neutral perspective, 35mm lens, natural reportage perspective, f4, natural, clean digital",
+    "medium": "high-resolution lifestyle photography",
+    "color_palette": [
+      "#5A2E26",
+      "#C6A268",
+      "#1B2A3A",
+      "#E8D6B0"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "wet pavement in the foreground reflecting the shop light, deep blue dusk sky above the roofline",
+    "elements": [
+      {
+        "type": "obj",
+        "bbox": [
+          120,
+          100,
+          880,
+          900
+        ],
+        "desc": "a narrow brick shopfront with a recessed doorway, a wide plate-glass window, and a bare unpainted wooden signboard mounted on the brickwork above the door"
+      }
+    ]
+  }
+}

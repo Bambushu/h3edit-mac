@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 h3edit.egg-info/
+demos/refs/rejected/
+demos/out/rejected/

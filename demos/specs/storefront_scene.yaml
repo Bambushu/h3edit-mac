@@ -1,0 +1,18 @@
+intent: A small brick shopfront at dusk with a bare wooden signboard mounted above the door, warm interior glow, no lettering anywhere
+path: photo
+subject:
+  who: a narrow brick shopfront with a recessed doorway, a wide plate-glass window, and a bare unpainted wooden signboard mounted on the brickwork above the door
+  action: seen straight on from across the pavement at dusk
+  wardrobe: dark red brick, black painted door frame, plain sanded timber signboard
+camera: {shot: wide, angle: eye, lens: 35mm, aperture: f4}
+composition:
+  rule: centered
+  placement: the doorway and the bare signboard sit in the middle of the frame, the signboard just above head height
+  layers: wet pavement in the foreground reflecting the shop light, deep blue dusk sky above the roofline
+lighting: {scheme: mixed practical, direction: from inside the shop window, quality: soft, temp: warm against cool dusk}
+grade: {look: natural, film: clean digital}
+palette: ["#5A2E26", "#C6A268", "#1B2A3A", "#E8D6B0"]
+atmosphere: blue hour, a warm shop interior spilling light onto wet pavement
+seed: 42
+preset: V4_DEFAULT_20
+size: 1280x720

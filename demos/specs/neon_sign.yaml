@@ -1,0 +1,22 @@
+intent: A glowing neon sign artwork for a fictional record shop, pink and blue tubing on a dark background, shown straight on
+path: art
+subject:
+  who: a neon sign made of bent glass tubing, a hot pink script wordmark with a blue tube underline and a small blue vinyl-record glyph, visible mounting pins and faint tube reflections
+  action: presented flat and front-on as artwork, glowing against a dark empty background
+camera: {shot: medium, angle: eye, lens: 50mm, aperture: f4}
+composition:
+  rule: centered
+  placement: the sign fills the middle of the frame with dark space around it, no wall texture and no building
+  layers: a plain near-black background with a soft coloured halo around the tubing
+lighting: {scheme: self illuminated, direction: none, quality: glowing, temp: mixed pink and blue}
+grade: {look: vivid, medium: neon sign photograph}
+palette: ["#FF3E9A", "#3EC7FF", "#0B0B10", "#FFD9EC"]
+atmosphere: eighties record shop nostalgia, saturated tube glow
+layout:
+  - type: text
+    bbox: [380, 140, 620, 860]
+    text: "NOVA RECORDS"
+    desc: a flowing retro script in hot pink neon tubing with a continuous glass stroke, a straight blue neon underline beneath
+seed: 42
+preset: V4_DEFAULT_20
+size: 1280x720

@@ -1,0 +1,18 @@
+intent: A single plain unlabelled aluminium drinks can standing on a dark wood table, beaded with condensation, lit by soft window light
+path: photo
+subject:
+  who: one plain matte aluminium drinks can, bare silver metal body with no label and no printing, rolled rim, tapered neck, concave base
+  action: standing upright and alone, centred on the table
+  wardrobe: bare brushed aluminium, beaded with fine condensation droplets
+camera: {shot: medium, angle: eye, lens: 85mm, aperture: f2}
+composition:
+  rule: centered
+  placement: the can occupies the middle third of the frame, rim clear of the top edge, base clear of the bottom edge
+  layers: a dark walnut table surface below with a soft reflection, an out-of-focus warm grey wall behind
+lighting: {scheme: window light, direction: from camera left, quality: soft, temp: neutral}
+grade: {look: natural, film: clean digital}
+palette: ["#C9CBCC", "#3A2A1E", "#8C8F91", "#E8E4DE"]
+atmosphere: a cold drink on a quiet afternoon, condensation catching the window highlight
+seed: 42
+preset: V4_DEFAULT_20
+size: 1280x720

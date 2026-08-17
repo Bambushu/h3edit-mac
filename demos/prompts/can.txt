@@ -1,0 +1,9 @@
+Task: Reference-guided generation.
+
+<Picture 1> supplies the entire scene: the can, the dark wood table, the condensation, the background, the lighting and the photograph's look all come from <Picture 1>. <Picture 2> is the label artwork reference and supplies nothing else. It does not supply a scene, a container, a background, a room, or lighting.
+
+Apply <Picture 2> to the can in <Picture 1> as exactly one continuous wraparound label covering the can body from just below the rolled rim to just above the base, curved around the cylinder so the cream field, the teal band and the lettering all follow the can's curvature and compress toward the silhouette edges. The can is turned so that the complete brand name faces the camera and reads in full across the front of the can, with the sun rays to its left and only the label's outer ends curving away at the silhouette edges. The label adopts the scene's lighting: it darkens on the shadow side, picks up the window highlight on the lit side, and the existing condensation droplets sit on top of it.
+
+Preserve from <Picture 1>: the camera position and framing; the can's size, position and proportions; the rolled rim, the concave base and the bare aluminium above and below the label; the table surface and its reflection; the condensation droplets and their distribution; the direction and softness of the window light; the background and its blur; the exposure, white balance and photographic grain.
+
+A single coherent photograph shows one can on the same table, now wearing the <Picture 2> artwork as its packaging.

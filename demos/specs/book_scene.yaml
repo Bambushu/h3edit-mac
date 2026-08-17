@@ -1,0 +1,18 @@
+intent: A portrait-format hardcover novel with a completely blank white cover lying on a wooden desk beside reading glasses and a cup of tea, seen at a three-quarter angle
+path: photo
+subject:
+  who: one closed hardcover novel in upright portrait proportions, clearly taller than it is wide, with a completely blank plain white front cover, no title and no printing, thick visible page block, cloth-bound spine
+  action: lying flat on the desk with its tall edge running away from the camera, the cover seen at a three-quarter angle so it reads as a skewed rectangle in perspective
+  wardrobe: plain white cover boards, cream page edges
+camera: {shot: medium, angle: high three-quarter, lens: 50mm, aperture: f4}
+composition:
+  rule: rule of thirds
+  placement: the tall portrait cover fills the left half of the frame in perspective, reading glasses upper right, a cup of tea at the right edge
+  layers: a warm oak desk surface filling the frame, a folded linen cloth at one edge
+lighting: {scheme: window light, direction: from the top left, quality: soft, temp: warm}
+grade: {look: natural, film: clean digital}
+palette: ["#F4F1EC", "#8A5A32", "#D8CFC0", "#3B3630"]
+atmosphere: a calm desk in morning light, soft shadow under the book
+seed: 77
+preset: V4_DEFAULT_20
+size: 1280x720

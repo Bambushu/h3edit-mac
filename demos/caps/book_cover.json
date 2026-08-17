@@ -1,0 +1,31 @@
+{
+  "high_level_description": "A science fiction book cover artwork, portrait format, a lone ship above a ringed planet with a metallic title, presented flat and front-on as cover artwork, filling the frame edge to edge, centered symmetrical composition, the planet fills the lower half, the ship sits upper left, the title occupies the upper third.",
+  "style_description": {
+    "aesthetics": "quiet vastness, a single ship a long way from home",
+    "lighting": "rim light, from behind the planet, hard direct light with crisp shadow edges, cool color temperature, blue cast",
+    "medium": "digital cover illustration",
+    "art_style": "wide shot, full body in the environment, shot at eye level, neutral perspective, 50mm lens, true-to-eye perspective, f8, cinematic",
+    "color_palette": [
+      "#0A0E23",
+      "#2B3A67",
+      "#C8CDD6",
+      "#E8B44A"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "a deep indigo to black gradient with fine star field, no border, no mockup, no physical book",
+    "elements": [
+      {
+        "type": "text",
+        "bbox": [
+          140,
+          90,
+          250,
+          910
+        ],
+        "text": "STARWAKE",
+        "desc": "a wide brushed-metal serif title in pale silver, letter spaced across the upper third of the cover"
+      }
+    ]
+  }
+}

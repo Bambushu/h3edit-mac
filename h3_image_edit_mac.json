@@ -117,7 +117,7 @@
     }
    },
    "widgets_values": [
-    "zit20260525_102819_00001_.png",
+    "example.png",
     "image"
    ],
    "color": "#432",
@@ -808,7 +808,7 @@
     }
    },
    "widgets_values": [
-    "2026-07-24_K2_21.png",
+    "example.png",
     "image"
    ],
    "color": "#432",
@@ -931,7 +931,7 @@
     }
    },
    "widgets_values": [
-    "3-loudandclearnoexcur.wav",
+    "example.wav",
     0,
     3.76,
     3.76,
@@ -1884,7 +1884,7 @@
     }
    },
    "widgets_values": {
-    "video": "mmh3_20260804_210342_00001-audio.mp4",
+    "video": "example.mp4",
     "force_rate": 24,
     "custom_width": 0,
     "custom_height": 0,
@@ -2424,7 +2424,7 @@
     "mac_note": "Originally pointed at an input file that does not ship with the workflow."
    },
    "widgets_values": [
-    "2026-08-04_K2_08.png",
+    "example.png",
     "image"
    ],
    "color": "#432",
@@ -2492,7 +2492,7 @@
     }
    },
    "widgets_values": [
-    "2026-08-04_K2_09.png",
+    "example.png",
     "image"
    ],
    "color": "#432",

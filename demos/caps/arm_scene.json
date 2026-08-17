@@ -1,0 +1,30 @@
+{
+  "high_level_description": "A close view of a bare inner forearm resting palm-up on a cafe table in soft daylight, plain unmarked skin, lying flat along the table top, palm up and fingers relaxed and open, the whole length of the forearm in contact with the surface so the inner forearm presents as a broad even plane, a rolled-back plain grey sleeve at the elbow, diagonal, the forearm runs diagonally across the frame from lower left to upper right, filling most of the width.",
+  "style_description": {
+    "aesthetics": "quiet cafe daylight raking across the skin, every pore and fine hair picked out, a clear bright-to-shadow gradient around the forearm",
+    "lighting": "single window, low and across the arm from the left so the forearm's curve turns from bright to shadow, crisp directional, neutral daylight",
+    "photo": "close-up framing, head and shoulders, high camera angle looking down at the subject, 50mm lens, true-to-eye perspective, f2, natural, clean digital",
+    "medium": "high-resolution lifestyle photography",
+    "color_palette": [
+      "#D9AE92",
+      "#C4A484",
+      "#E8E2D8",
+      "#6E6459"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "a pale wooden cafe table below, a softly blurred window and chair behind",
+    "elements": [
+      {
+        "type": "obj",
+        "bbox": [
+          120,
+          100,
+          880,
+          900
+        ],
+        "desc": "one bare human inner forearm and open palm, plain unmarked skin in sharp macro detail showing individual pores, fine downy hair catching the light, faint blue veins and wrist creases, no jewellery, no watch, cropped at the elbow, no face and no head in frame"
+      }
+    ]
+  }
+}

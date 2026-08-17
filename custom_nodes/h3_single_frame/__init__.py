@@ -44,24 +44,11 @@ h3.align_frame_count = align_frame_count
 h3.video_latent_t = video_latent_t
 h3.temporal_shape = temporal_shape
 
-# The schema floor only bites when `length` is a literal widget value. h3edit drives it through
-# a linked ComfyMathExpression, where ComfyUI validates the connection's type and not the range.
-# Relax it anyway when the schema is reachable, so the GUI accepts 1 too -- best effort, and
-# never fatal, because the shape of io.Schema is not a stable contract.
-_relaxed = []
-try:
-    for name in dir(h3):
-        cls = getattr(h3, name)
-        if not (isinstance(cls, type) and hasattr(cls, "define_schema")):
-            continue
-        for inp in getattr(cls.define_schema(), "inputs", []):
-            if getattr(inp, "id", None) == "length" and getattr(inp, "min", None) == 5:
-                inp.min = 1
-                _relaxed.append(name)
-except Exception as e:                                      # noqa: BLE001
-    print(f"[h3_single_frame] schema floor left at 5 ({e}); linked length still works")
-
-print(f"[h3_single_frame] one-frame H3 enabled; schema relaxed on {_relaxed or 'nothing'}")
+# NOT patched: the `min=5` on the length widget. /object_info still advertises it, but ComfyUI
+# does not enforce widget minimums when a graph is submitted to /prompt -- a literal length=1 is
+# accepted (measured). The floor only clamps the slider in the GUI. Two earlier attempts to relax
+# it here were dead code that logged success while changing nothing.
+print("[h3_single_frame] one-frame H3 enabled (align_frame_count / video_latent_t / temporal_shape)")
 
 
 class H3SingleFrameEnabled:

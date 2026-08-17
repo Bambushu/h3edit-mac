@@ -1,0 +1,22 @@
+intent: A flat mural painting design for a fictional kite festival, bold flat colour shapes covering the whole surface edge to edge, with a large painted title band
+path: art
+subject:
+  who: a flat mural painting, one huge stylised sun low on the left with long straight triangular rays reaching far across the sky, three large angular kites on straight strings climbing across the upper area, painted flat colour throughout
+  action: presented flat and front-on as artwork, filling the frame edge to edge
+camera: {shot: wide, angle: eye, lens: 50mm, aperture: f8}
+composition:
+  rule: rule of thirds
+  placement: the painted colour continues past every edge of the frame, the sky filling the whole surface corner to corner, the sun low left and the kites upper right
+  layers: one continuous flat painted surface of solid colour shapes reaching every corner
+lighting: {scheme: flat even, direction: none, quality: flat, temp: neutral}
+grade: {look: graphic, medium: flat matte emulsion mural painting}
+palette: ["#E8462B", "#F2B01E", "#1D6E8C", "#F6EFE2"]
+atmosphere: a bright painted wall, confident flat shapes and clean paint edges
+layout:
+  - type: text
+    bbox: [640, 100, 820, 900]
+    text: "HARBOUR KITE FESTIVAL"
+    desc: a friendly bold grotesque wordmark in cream, set on two lines, filling the lower width of the artwork
+seed: 79
+preset: V4_DEFAULT_20
+size: 1280x720

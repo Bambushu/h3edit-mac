@@ -1,0 +1,41 @@
+{
+  "high_level_description": "A flat two-dimensional banner artwork on a solid teal field, one brand name centred in the middle with a sunburst beside it and nothing else, presented flat and front-on as artwork, filling the frame edge to edge with no margin, centered symmetrical composition, the teal band fills the full height of the frame from the very top edge to the very bottom edge, and the artwork runs off all four edges with no cream margin, no border and no drop shadow.",
+  "style_description": {
+    "aesthetics": "bright confident flat colour, clean and uncluttered",
+    "lighting": "flat even, none, flat, neutral white balance, true tones",
+    "medium": "flat vector illustration",
+    "art_style": "wide shot, full body in the environment, shot at eye level, neutral perspective, 50mm lens, true-to-eye perspective, f8, graphic",
+    "color_palette": [
+      "#F26B21",
+      "#0E7C7B",
+      "#FBF6EC",
+      "#231F20"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "one uninterrupted teal field, bare flat colour from edge to edge apart from the sunburst and the single brand name",
+    "elements": [
+      {
+        "type": "text",
+        "bbox": [
+          400,
+          330,
+          620,
+          700
+        ],
+        "text": "SOLSTICE",
+        "desc": "a bold condensed geometric sans wordmark in cream, wide letter spacing, the only lettering anywhere in the artwork"
+      },
+      {
+        "type": "obj",
+        "bbox": [
+          430,
+          180,
+          880,
+          320
+        ],
+        "desc": "a solid orange semicircle of radiating triangular rays fanning upward from the band, open at the centre with no disc, no badge, no roundel outline and no small lettering of any kind"
+      }
+    ]
+  }
+}

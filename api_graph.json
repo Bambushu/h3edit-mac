@@ -209,7 +209,7 @@
  },
  "137": {
   "inputs": {
-   "image": "henkref_car_hi.jpg"
+   "image": "can_scene-s42.png"
   },
   "class_type": "LoadImage",
   "_meta": {
@@ -218,7 +218,7 @@
  },
  "138": {
   "inputs": {
-   "value": "Task: Reference-guided generation. Generate a new photograph of the car from <Picture 1> carrying the sponsor wordmark from <Picture 2> as a vinyl decal on its near-side doors.\n\n<Picture 1> is the vehicle and scene reference. Preserve the car's identity, body shape and proportions, white paint, wheels, chrome window trim, badges, mirrors, headlights, the yellow Dutch number plate reading 36-XX-LF, the background, the ground surface, the lighting direction, and the camera framing from <Picture 1>. Copy the car and the background from <Picture 1> exactly; do not substitute, simplify, restyle, or redesign them.\n\n<Picture 2> is the wordmark reference and supplies nothing else. It does not supply a scene, a background, a colour scheme, or lighting. Reproduce its brush-script letterforms exactly, letter for letter, with the same proportions and the same stroke weights.\n\nRender that wordmark as a matte black vinyl decal applied flat to the front and rear near-side doors, centred between the wheel arches, its baseline level with the door handles, spanning most of the width of both doors together. The decal follows the doors' curvature, dims where the bodywork turns away from the light, and the vertical door shut line cuts across it exactly as it would across real vinyl.\n\nA single coherent ultrawide photograph shows the complete car in daylight.\n"
+   "value": "Task: Reference-guided generation. Describe your edit here -- see demos/prompts/ for the working skeleton."
   },
   "class_type": "PrimitiveStringMultiline",
   "_meta": {
@@ -227,7 +227,7 @@
  },
  "139": {
   "inputs": {
-   "image": "henk_stake_logo.png"
+   "image": "can_label-s84.png"
   },
   "class_type": "LoadImage",
   "_meta": {

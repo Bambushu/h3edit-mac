@@ -1,0 +1,31 @@
+{
+  "high_level_description": "A glowing neon sign artwork for a fictional record shop, pink and blue tubing on a dark background, shown straight on, presented flat and front-on as artwork, glowing against a dark empty background, centered symmetrical composition, the sign fills the middle of the frame with dark space around it, no wall texture and no building.",
+  "style_description": {
+    "aesthetics": "eighties record shop nostalgia, saturated tube glow",
+    "lighting": "self illuminated, none, glowing, mixed pink and blue",
+    "medium": "neon sign photograph",
+    "art_style": "medium shot, waist up, shot at eye level, neutral perspective, 50mm lens, true-to-eye perspective, f4, vivid",
+    "color_palette": [
+      "#FF3E9A",
+      "#3EC7FF",
+      "#0B0B10",
+      "#FFD9EC"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "a plain near-black background with a soft coloured halo around the tubing",
+    "elements": [
+      {
+        "type": "text",
+        "bbox": [
+          380,
+          140,
+          620,
+          860
+        ],
+        "text": "NOVA RECORDS",
+        "desc": "a flowing retro script in hot pink neon tubing with a continuous glass stroke, a straight blue neon underline beneath"
+      }
+    ]
+  }
+}

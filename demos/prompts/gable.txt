@@ -1,0 +1,9 @@
+Task: Reference-guided generation.
+
+<Picture 1> supplies the entire scene: the building, the brickwork, the window, the pavement, the sky, the lighting and the photograph's look. <Picture 2> is the mural artwork reference and supplies nothing else. It does not supply a location, a background, a texture, a sky, or lighting.
+
+Paint <Picture 2> onto the bare brick wall in <Picture 1> as exactly one mural filling the brickwork between the stone plinth course at the base and the roof coping above, and stopping at the window reveal. The mural behaves like paint on brick: every brick course and mortar joint remains legible through the colour, the relief of the wall modulates its edges, and the window and its stone sill cut the design exactly as they cut the wall surface. It reads as absorbed pigment on masonry, not a pasted poster and not a projected image.
+
+Preserve from <Picture 1>: the camera position and framing; the wall's geometry, its corner edge and roof line; the tall window, its dark frame, its deep reveal and its stone sill; the stone plinth course and the pavement below; brick colour, mortar tone and surface wear outside the mural; the sky; the direction and warmth of the sunlight and all cast shadows; the exposure and photographic grain.
+
+A single coherent photograph shows the same brick wall on the same street, with the <Picture 2> artwork painted across the brickwork as one mural.

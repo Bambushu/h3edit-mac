@@ -1,0 +1,9 @@
+Task: Reference-guided generation.
+
+<Picture 1> supplies the entire scene: the book, the wooden desk, the reading glasses, the cup, the daylight and the photograph's look. <Picture 2> is the cover artwork reference and supplies nothing else. It does not supply a scene, an object, a background, a desk, or lighting.
+
+Print <Picture 2> onto the blank white front cover of the book in <Picture 1> as exactly one cover design, filling the cover to its edges. The artwork warps to match the cover's perspective, so its horizontals converge exactly as the cover's own edges do, and it stops cleanly at the cover boards. The printed surface takes the scene's light: it brightens toward the window side and falls into the same soft shadow along the spine edge.
+
+Preserve from <Picture 1>: the camera position and three-quarter framing; the book's size, position, angle and thickness; the cloth-bound spine, the page block and its cream page edges; the wooden desk and its grain; the reading glasses and the cup; the direction and softness of the daylight and the shadow the book casts; the exposure, white balance and photographic grain.
+
+A single coherent photograph shows the same book on the same desk, its cover now carrying the <Picture 2> artwork.

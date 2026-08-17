@@ -1,0 +1,30 @@
+{
+  "high_level_description": "American traditional tattoo flash of a tiger head on plain white, thick black outlines and a limited palette, presented flat and front-on as a single centred flash design, centered symmetrical composition, one design centred with a generous plain white margin on all sides.",
+  "style_description": {
+    "aesthetics": "old school tattoo parlour flash sheet, confident heavy line work",
+    "lighting": "flat even, none, flat, neutral white balance, true tones",
+    "medium": "traditional tattoo flash illustration",
+    "art_style": "medium shot, waist up, shot at eye level, neutral perspective, 50mm lens, true-to-eye perspective, f8, graphic",
+    "color_palette": [
+      "#111111",
+      "#C6242B",
+      "#E2A72E",
+      "#FFFFFF"
+    ]
+  },
+  "compositional_deconstruction": {
+    "background": "plain flat white, nothing else, no skin, no arm, no paper texture",
+    "elements": [
+      {
+        "type": "obj",
+        "bbox": [
+          120,
+          100,
+          880,
+          900
+        ],
+        "desc": "a snarling tiger head drawn as American traditional tattoo flash, very thick even black outlines, bold black whisker and fur strokes, flat red and gold fill, heavy black shading blocks"
+      }
+    ]
+  }
+}

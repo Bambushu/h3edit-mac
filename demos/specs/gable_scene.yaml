@@ -1,0 +1,18 @@
+intent: The bare red-brick gable end of a terraced building in raking afternoon sun, one tall window near the right edge, no signage
+path: photo
+subject:
+  who: a tall bare red-brick gable wall, every brick course and mortar joint visible, weathered and unpainted, a single tall sash window set near the right edge with a deep reveal
+  action: filling the frame almost square-on to the camera, the brick face nearly parallel to the film plane with only a slight turn, no steep perspective and no strong recession
+  wardrobe: aged red brick, pale grey mortar, dark painted window frame
+camera: {shot: wide, angle: eye, lens: 50mm, aperture: f8}
+composition:
+  rule: rule of thirds
+  placement: the brick wall fills the left two thirds of the frame, the window sits in the right third
+  layers: a narrow strip of pavement and kerb along the bottom, a plain pale sky above the roofline
+lighting: {scheme: direct sunlight, direction: grazing straight across the wall from the left at a very low angle, quality: hard, temp: warm late afternoon}
+grade: {look: natural, film: clean digital}
+palette: ["#8B4A35", "#C9BFB2", "#2A2622", "#BFD3E0"]
+atmosphere: low grazing sun raking across the brick so each course throws its own hard micro-shadow and the mortar joints sit in shade
+seed: 77
+preset: V4_DEFAULT_20
+size: 1280x720

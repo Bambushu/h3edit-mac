@@ -1,0 +1,14 @@
+{
+  "preset": "V4_DEFAULT_20",
+  "size": "1280x720",
+  "results": [
+    {
+      "name": "can_label",
+      "seed": 84,
+      "png": "refs/can_label-s84.png",
+      "seconds": 741,
+      "refused": false
+    }
+  ],
+  "remaining": []
+}

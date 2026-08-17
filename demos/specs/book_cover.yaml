@@ -1,0 +1,22 @@
+intent: A science fiction book cover artwork, portrait format, a lone ship above a ringed planet with a metallic title
+path: art
+subject:
+  who: a science fiction book cover composition, a small sharp-nosed ship silhouetted against a large ringed planet, a scatter of stars, a dark gradient sky
+  action: presented flat and front-on as cover artwork, filling the frame edge to edge
+camera: {shot: wide, angle: eye, lens: 50mm, aperture: f8}
+composition:
+  rule: centered
+  placement: the planet fills the lower half, the ship sits upper left, the title occupies the upper third
+  layers: a deep indigo to black gradient with fine star field, no border, no mockup, no physical book
+lighting: {scheme: rim light, direction: from behind the planet, quality: hard, temp: cool}
+grade: {look: cinematic, medium: digital cover illustration}
+palette: ["#0A0E23", "#2B3A67", "#C8CDD6", "#E8B44A"]
+atmosphere: quiet vastness, a single ship a long way from home
+layout:
+  - type: text
+    bbox: [140, 90, 250, 910]
+    text: "STARWAKE"
+    desc: a wide brushed-metal serif title in pale silver, letter spaced across the upper third of the cover
+seed: 42
+preset: V4_DEFAULT_20
+size: 720x1280

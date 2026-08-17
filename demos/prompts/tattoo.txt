@@ -1,0 +1,9 @@
+Task: Reference-guided generation.
+
+<Picture 1> supplies the entire scene: the forearm, the hand, the sleeve, the table, the background, the daylight and the photograph's look. <Picture 2> is the tattoo artwork reference and supplies nothing else. It does not supply a scene, a background, a body, a limb, or lighting.
+
+Place <Picture 2> on the inner forearm in <Picture 1> as exactly one tattoo, centred on the broad flat area midway between the wrist and the elbow, well clear of the wrist, and occupying roughly a third of the forearm's visible length. The design adopts the arm's cylindrical curvature, compressing slightly toward the outer edges of the arm. It reads as ink under the skin rather than a sticker on it. The ink is healed work several years old: its black outlines are soft-edged and settled toward blue-black, its reds and golds are muted and slightly diffused into the surrounding skin, and it carries no hard cut edge and no pale outline anywhere. The skin lies OVER the ink -- individual pores, fine downy hair, freckles and the skin's soft sheen all remain visible across the design, and the daylight gradient running along the arm passes continuously through it without a break.
+
+Preserve from <Picture 1>: the camera position and framing; the arm's pose, size and position; the hand, fingers, wrist creases and the grey sleeve; the table surface; the direction and quality of the daylight and all cast shadows; the background and its blur; skin tone, veins and moles outside the tattooed area; the exposure, white balance and photographic grain.
+
+A single coherent photograph shows the same arm on the same table, with the <Picture 2> design as one tattoo on the forearm.
