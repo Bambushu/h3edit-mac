@@ -9,7 +9,7 @@ it becomes a serious instruction-based image editor. Credit for the technique go
 Patient_Ratio4177 (post 1vo1ab3) — this is the Apple Silicon port of it, since the original
 recipe is CUDA-only (int8_convrot + nvfp4 + comfy-kitchen).
 
-What's in the repo (github.com/Bambushu/h3edit):
+What's in the repo (github.com/Bambushu/h3edit-mac):
 - the ComfyUI workflow (GGUF Ref2VA + lightx2v turbo LoRA + ClipProj, sa_solver/8, fully MPS)
 - a `h3edit` CLI: one command, two reference images in, one edit out
 - a tiny custom node that unlocks 1-frame renders WITHOUT patching ComfyUI's source (survives updates)
