@@ -24,9 +24,9 @@ OUTPUT_DIR = os.path.expanduser(os.environ.get("H3EDIT_OUTPUT", "~/ComfyUI-h3/ou
 # Node ids in api_graph.json. Verified by class_type at load, so a re-export that renumbers
 # fails loudly instead of writing a value into the wrong node.
 N = {"prompt": ("138", "PrimitiveStringMultiline"), "res": ("115", "ResolutionSelector"),
-     "steps": ("124", "BasicScheduler"), "seed": ("142", "easy seed"),
+     "steps": ("124", "BasicScheduler"), "seed": ("129", "RandomNoise"),
      "r2v": ("136", "MiniMaxH3ReferenceToVideo"), "sampler": ("123", "KSamplerSelect"),
-     "length": ("131", "ComfyMathExpression"), "save": ("664", "SaveImage")}
+     "save": ("664", "SaveImage")}
 REF_NODES = [("137", "ref_images.ref_image_0"), ("139", "ref_images.ref_image_1")]
 
 ASPECTS = {"1:1": "1:1 (Square)", "2:3": "2:3 (Portrait Photo)", "3:2": "3:2 (Photo)",
@@ -55,22 +55,32 @@ def doctor():
     # rather than the length schema: /object_info is serialized at registration, BEFORE custom
     # nodes load, so it still advertises min=5 even when the rebind is live. h3edit drives
     # length through a linked ComfyMathExpression, where the range is not validated anyway.
-    try:
-        api("/api/object_info/H3SingleFrameEnabled")
+    # /object_info answers {} with HTTP 200 for an unknown node, so require the key itself.
+    if "H3SingleFrameEnabled" in api("/api/object_info/H3SingleFrameEnabled"):
         print("ok   single-frame rebind is live (h3_single_frame custom node loaded)")
-    except Exception:
+    else:
         ok = False
-        print("FAIL h3_single_frame custom node is not loaded. It belongs at "
-              "~/ComfyUI-h3/custom_nodes/h3_single_frame/ -- then RESTART ComfyUI.")
+        print("FAIL h3_single_frame custom node is not loaded. Symlink it into ComfyUI's "
+              "custom_nodes/ and RESTART ComfyUI.")
     g = json.load(open(GRAPH))
     for key, (nid, cls) in N.items():
         if nid not in g or g[nid]["class_type"] != cls:
             ok = False
             print(f"FAIL api_graph.json node {nid} is not {cls} -- re-export with --export")
-    if g[N["length"][0]]["inputs"]["expression"] != "1":
+    # length must arrive via a LINK from the PrimitiveInt: literal widget values are
+    # range-validated at /prompt (min=5), linked inputs are only type-checked.
+    if g.get("131", {}).get("class_type") != "PrimitiveInt" or g["131"]["inputs"].get("value") != 1 \
+            or g[N["r2v"][0]]["inputs"].get("length") != ["131", 0]:
         ok = False
-        print("FAIL length expression is not '1' -- the graph would render a clip, not a frame")
-    print("ok   graph:", len(g), "nodes,", ", ".join(k for _, k in REF_NODES))
+        print("FAIL length is not linked from PrimitiveInt(1) -- the graph would render a clip")
+    refs = g[N["r2v"][0]]["inputs"]
+    missing = [k for _, k in REF_NODES if k not in refs]
+    if missing:
+        ok = False
+        print(f"FAIL reference inputs {missing} are absent -- renders would silently ignore "
+              "your images. Re-export with --export.")
+    else:
+        print("ok   graph:", len(g), "nodes,", ", ".join(k for _, k in REF_NODES))
     return ok
 
 
@@ -89,7 +99,7 @@ def build(args):
     g[N["prompt"][0]]["inputs"]["value"] = args.prompt
     g[N["res"][0]]["inputs"].update(aspect_ratio=ASPECTS[args.ar], megapixels=args.mp)
     g[N["steps"][0]]["inputs"]["steps"] = args.steps
-    g[N["seed"][0]]["inputs"]["seed"] = args.seed
+    g[N["seed"][0]]["inputs"]["noise_seed"] = args.seed
     g[N["r2v"][0]]["inputs"]["ref_image_size"] = args.ref_size
     g[N["save"][0]]["inputs"]["filename_prefix"] = "h3_edit/" + args.name
     for (nid, _), path in zip(REF_NODES, args.refs):

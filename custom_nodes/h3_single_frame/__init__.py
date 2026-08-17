@@ -44,10 +44,10 @@ h3.align_frame_count = align_frame_count
 h3.video_latent_t = video_latent_t
 h3.temporal_shape = temporal_shape
 
-# NOT patched: the `min=5` on the length widget. /object_info still advertises it, but ComfyUI
-# does not enforce widget minimums when a graph is submitted to /prompt -- a literal length=1 is
-# accepted (measured). The floor only clamps the slider in the GUI. Two earlier attempts to relax
-# it here were dead code that logged success while changing nothing.
+# NOT patched: the `min=5` on the length widget. ComfyUI range-validates LITERAL widget values
+# at /prompt ("Value 1 smaller than min of 5") but only type-checks LINKED inputs -- so the
+# shipped graph feeds length from a PrimitiveInt(1) via a link, and no schema change is needed.
+# The function rebinds above remain essential: without them execution snaps length 1 back to 5.
 print("[h3_single_frame] one-frame H3 enabled (align_frame_count / video_latent_t / temporal_shape)")
 
 

@@ -1,61 +1,52 @@
-# h3edit — instruction-based image editing with MiniMax H3, on Apple Silicon
+# h3edit-mac — MiniMax H3 image editing on Apple Silicon (ComfyUI + CLI)
 
 MiniMax H3 is an open-weight 33B **video** model. It turns out to be a strong instruction-based
 **image editor**: render exactly **one frame** of its reference-to-video (R2V) mode, decoded
-through a VAE retrained for single images. This repo is the **Apple Silicon port** of that
-technique — the original recipe is CUDA-only — plus a CLI and a ComfyUI custom node that make it
-a one-command tool.
+through a VAE retrained for single images. The technique is
+[Patient_Ratio4177's](https://www.reddit.com/r/StableDiffusion/comments/1vo1ab3/h3_as_a_singleimage_edit_model/)
+and is CUDA-only as published; **this repo is the Apple Silicon port**. It ships a ComfyUI
+workflow, a small compatibility node that enables one-frame H3, and an `h3edit` CLI that queues
+the bundled workflow through a running ComfyUI server. The CLI is still called `h3edit`.
 
 ![mural demo](demos/sheets/gable.png)
 
-*Two references in (a bare wall, a flat artwork), one image out. Every brick course and mortar
-joint reads through the paint, and the window cuts the design exactly as it cuts the wall.*
+*Two references in (a bare wall, a flat artwork), one image out. Brick and mortar texture
+remains visible through the painted area, and the design stops at the window opening.*
 
 ```sh
-h3edit "$(cat edit.txt)" -r scene.png -r artwork.png -o out.png --wait
+h3edit "$(cat demos/prompts/gable.txt)" \
+  -r demos/refs/gable_scene-s77.png -r demos/refs/gable_mural-s79.png \
+  --ar 16:9 -o out.png --wait
 h3edit --doctor
 ```
-
-## Credits — this is a port, not an invention
-
-- **Technique** (one-frame R2V as an image editor): [Patient_Ratio4177 on r/StableDiffusion](https://www.reddit.com/r/StableDiffusion/comments/1vo1ab3/h3_as_a_singleimage_edit_model/)
-- **Single-image VAE**: [Mamad8/MiniMax-H3-Image-VAE](https://huggingface.co/Mamad8/MiniMax-H3-Image-VAE)
-- **Turbo 8-step LoRA**: [lightx2v/Minimax-h3-Turbo](https://huggingface.co/lightx2v/Minimax-h3-Turbo)
-- **Pruned Ref2VA GGUF**: [Abiray/MiniMax-H3-Pruned-GGUF](https://huggingface.co/Abiray/MiniMax-H3-Pruned-GGUF)
-- **ClipProj text encoder**: [NicoLab28/ClipProj-MiniMax-H3](https://huggingface.co/NicoLab28/ClipProj-MiniMax-H3)
-- **MiniMax H3** itself: MiniMax, via the [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) repack
-
-The author's own recipe needs CUDA three times over (an `int8_convrot` hybrid checkpoint, an
-`nvfp4` encoder, comfy-kitchen attention) and runs ~8s/image on an RTX 5090. This port swaps in
-GGUF + fp8 pieces that run on MPS. It is slower — minutes, not seconds — but fully local on a Mac.
 
 ## Demos
 
 All references are AI-generated (Ideogram 4 for the artworks, Krea 2 for the scenes), all
 fictional brands. Left: the two inputs. Right: the h3edit output.
 
-| | claim demonstrated |
+| | observed in this render |
 |---|---|
-| ![can](demos/sheets/can.png) | Type compresses correctly around a **cylinder**; the scene's condensation sits **on top of** the applied label. |
-| ![neon](demos/sheets/neon.png) | The added sign is a **light source**: pink/blue glow on the brick, and a second coloured reflection in the wet pavement **alongside the existing warm one**. |
-| ![book](demos/sheets/book.png) | **Perspective warp** — the artwork's horizontals converge exactly as the cover's own edges do, stopping at the boards. |
+| ![can](demos/sheets/can.png) | Type compresses around the **cylinder**; the scene's condensation sits **on top of** the applied label. |
+| ![neon](demos/sheets/neon.png) | The added sign behaves as a **light source**: glow on the brick, and a second coloured reflection in the wet pavement alongside the existing warm one. |
+| ![book](demos/sheets/book.png) | **Perspective warp** — the artwork's horizontals converge with the cover's own edges, stopping at the boards. |
 
-Prompts for every demo are in [`demos/prompts/`](demos/prompts), the reference-generation specs
-in [`demos/specs/`](demos/specs), and the original author's 11 worked prompts in
-[`prompts/reference_prompts.txt`](prompts/reference_prompts.txt).
+**Reproduce any demo exactly:** every PNG in `demos/out/` embeds its full ComfyUI graph — drag
+one into ComfyUI to load it, seed and prompt included. Prompts are in
+[`demos/prompts/`](demos/prompts), reference-generation specs in [`demos/specs/`](demos/specs).
+Seeds: can `58413360`, gable `123494846`, neon `1035877917`, book `583954935`, tattoo
+`733870745`. Each demo shown was produced in one or two attempts.
 
 ### Where it fails, honestly
 
 ![tattoo failure](demos/sheets/tattoo.png)
 
 Two attempts — with a texture-rich skin reference and explicit healed-ink language — could not
-make a tattoo read as ink **under** skin: it lands as a sticker, and the drawn tiger's face
-deforms where letterforms never did. The pattern across all five demos:
-
-**H3 transfers flat graphic marks and type with near-perfect fidelity, and applies surface
-physics it can see (curvature, masonry relief, perspective, light emission). It degrades on
-detailed illustration, and will not invent subsurface material properties it has no geometric
-evidence for.**
+make a tattoo read as ink **under** skin: both look pasted on, and the drawn tiger's face
+deforms where letterforms never did. Across these five tests: flat graphics and type were
+preserved best; visible curvature, relief, perspective and emitted light were usually
+reproduced; detailed illustration degraded; and neither tattoo attempt produced a subsurface
+ink look.
 
 Also true everywhere: this is a **regeneration conditioned on the references, not a masked
 edit**. Scene, lighting, shadows and composition carry; fine detail (chrome trim, thin edges)
@@ -64,46 +55,57 @@ against the untouched original.
 
 ## Install
 
-Needs: Apple Silicon Mac (developed on 48 GB; the model set wants ~30 GB free RAM),
-[ComfyUI](https://github.com/Comfy-Org/ComfyUI) ≥ 0.32 with
-[ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF), Python ≥ 3.10, `uv`.
+Clone this repository and `cd` into it; all commands below assume that directory.
 
-**1. Models (~33 GB total).** Paths are relative to your ComfyUI `models/` dir and must match
-exactly — the graph refers to them by these names:
+Tested configuration: **M5 Mac, 48 GB unified memory**, ComfyUI 0.32. No minimum-memory
+configuration has been established — do not assume smaller Macs work. Downloads total ~33 GB,
+and a run wants ~30 GB of unified memory free.
+
+Custom node packs required: **[ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF)** and
+**[ComfyUI-ClipProj](https://github.com/nicolab28/ComfyUI-ClipProj)** — nothing else, for the
+CLI and the GUI workflow alike.
+
+**1. Models (~33 GB).** Review each model's license before commercial use. Paths are relative to
+ComfyUI's `models/` dir and must match exactly — the graph refers to these names:
 
 | file | put at | size | from |
 |---|---|---|---|
 | `MiniMax-H3-Ref2VA-Pruned-Q5_K_M.gguf` | `diffusion_models/_h3/` | 14.1 GB | [Abiray/MiniMax-H3-Pruned-GGUF](https://huggingface.co/Abiray/MiniMax-H3-Pruned-GGUF) |
-| `qwen3vl_8b_fp8_scaled.safetensors` | `text_encoders/_h3/` | 10.6 GB | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |
+| `qwen3vl_8b_fp8_scaled.safetensors` | `text_encoders/_h3/` | 10.6 GB | [Comfy-Org/Qwen3-VL](https://huggingface.co/Comfy-Org/Qwen3-VL/tree/main/text_encoders) |
 | `mmh3-8b-ClipProj-celeb-mlp.safetensors` | `clip_projections/` | 0.4 GB | [NicoLab28/ClipProj-MiniMax-H3](https://huggingface.co/NicoLab28/ClipProj-MiniMax-H3) |
 | `minimax_h3_t1_image_vae_step1597.safetensors` | `vae/_h3/vae/` | 5.2 GB | [Mamad8/MiniMax-H3-Image-VAE](https://huggingface.co/Mamad8/MiniMax-H3-Image-VAE) |
 | `minimax_h3_audio_vae_fp32.safetensors` | `vae/_h3/vae/` | 0.6 GB | [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) |
 | `minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors` | `loras/` | 2.0 GB | [lightx2v/Minimax-h3-Turbo](https://huggingface.co/lightx2v/Minimax-h3-Turbo) |
 
-(The audio VAE is required even for stills — H3 is a joint audio+video model and the graph
-decodes both; the audio side of a single frame is discarded.)
+(The audio VAE is required even for stills — H3 generates audio and video jointly; the audio
+side of a single frame is decoded and discarded.)
 
-**2. The single-frame custom node** (this repo, `custom_nodes/h3_single_frame/`):
+**Prefer the GUI?** Drag [`h3_image_edit_mac.json`](h3_image_edit_mac.json) into ComfyUI — 21
+nodes, titled, and pre-loaded with the mural demo (copy the two images from `demos/refs/` into
+ComfyUI's `input/` first). Press Queue and you should reproduce `demos/out/gable.png` exactly.
+
+**2. The single-frame compatibility node** (this repo):
 
 ```sh
 ln -s "$(pwd)/custom_nodes/h3_single_frame" /path/to/ComfyUI/custom_nodes/h3_single_frame
 ```
 
-ComfyUI floors frame count in two places — `min=5` on the length widget, and
-`align_frame_count()`, which snaps anything below 5 back up to 5 — so a naive `length=1`
-silently renders 5 frames (and taking frame 0 of those gives grid artifacts under the image
-VAE). The node rebinds three module functions at import. **Deliberately not a patch to
-ComfyUI's source**: `custom_nodes/` is gitignored in the ComfyUI checkout, so a `git pull`
-there can never revert it. Restart ComfyUI after linking.
+It enables `length=1` without modifying ComfyUI itself, so ComfyUI updates cannot revert it.
+**Restart ComfyUI after linking.** (Stock ComfyUI floors H3 at 5 frames in two places; taking
+frame 0 of a 5-frame render gives grid artifacts under the image VAE. Details in the node's
+docstring. The `H3SingleFrameEnabled` node it registers is a diagnostic marker, not an editor.)
 
 **3. The CLI:**
 
 ```sh
 uv tool install --force -e .
-h3edit --doctor      # checks ComfyUI, the custom node, and the graph's reference inputs
+h3edit --doctor
 ```
 
-If ComfyUI is not on `127.0.0.1:8288`, set `H3EDIT_COMFY`, `H3EDIT_INPUT`, `H3EDIT_OUTPUT`.
+`--doctor` checks that ComfyUI answers, that the compatibility node is loaded in the *running*
+server, and that the graph still carries its reference inputs. If ComfyUI is not on
+`127.0.0.1:8288`, set `H3EDIT_COMFY`; `H3EDIT_INPUT`/`H3EDIT_OUTPUT` point at your ComfyUI
+`input/` and `output/` dirs (defaults assume `~/ComfyUI-h3/`).
 
 ## Usage and dials
 
@@ -116,13 +118,13 @@ h3edit "Task: Reference-guided generation. ..." -r scene.png -r artwork.png \
 |---|---|---|
 | `--steps` | 8 | at 6 the model rendered the subject **twice** |
 | `--mp` | 2.0 | see below — this also sizes the references |
-| `--ref-size` | `match` | `max` pins refs to a 2048px short edge: ~10× slower for no visible gain (measured 72:48 vs 7:30, of which sampling was only 8:44 — the rest was reference encode) |
-| `--ar` | `21:9` | pick the one matching your scene |
+| `--ref-size` | `match` | `max`: 72:48 total (8:44 of it sampling, the rest reference encode); `match`: 7:30 total. No visible gain from `max` in this test |
+| `--ar` | `21:9` | output aspect; set it to match your scene (all included demos use `16:9`) |
 
 **Megapixels is secretly the reference-resolution dial.** With `match`, references are scaled to
 the *generation's* pixel area — at `--mp 1.0` a 1024px wordmark was squashed to ~650px before H3
-saw it and came back airbrushed with a halo. 2.0 is clean. Timing on an M5 (2208×960, 2 refs):
-**7–10.5 min** per image; there is real run-to-run variance.
+saw it and came back airbrushed with a halo. 2.0 is clean. Timing on the M5 (2 refs, ~2 MP):
+**7–10.5 min** per image, with real run-to-run variance.
 
 **Judge results at 100%, never at thumbnail size.** A render that looks clean at feed size can
 have deformed letterforms and a soft halo. Crop the edited region and compare it against the
@@ -141,33 +143,38 @@ Cite images as `<Picture 1>` / `<Picture 2>`. The skeleton that works:
 4. An exhaustive **preserve list** naming everything from `<Picture 1>` that must survive.
 5. A closing sentence naming the output form: *"A single coherent photograph shows …"*
 
-Every demo prompt in `demos/prompts/` follows this shape.
+Every demo prompt in `demos/prompts/` follows this shape. The original author's 11 worked
+prompts are in [`prompts/reference_prompts.txt`](prompts/reference_prompts.txt) — note some use
+three or four reference pictures, and the CLI wires two; adapt in the GUI and re-export for more.
 
-### Making reference artwork (the part that will bite you)
-
-If you generate the asset image with a text-to-image model, **nouns summon their conventions**:
-
-- asking for a *poster* added a printed border and a garbled corner date line
-- asking for a *label* added an ingredient panel, a nutrition block and a barcode
-- a *roundel* became a badge — and a badge wants tiny text inside it
-
-All that furniture arrives as garbled micro-text, and H3 reproduces letterforms **faithfully** —
-garbage in the reference becomes perfectly-transferred garbage on the product. The fix is never
-another seed or another adjective: **swap the noun** (*mural painting*, *banner*) for one whose
-conventions you actually want, and keep any wordmark inside the middle half of the artwork if it
-must survive being wrapped around a cylinder — a cylinder only ever shows ~40% of a full-width
-strip.
+**Making reference artwork:** H3 transfers reference art literally — including unwanted borders,
+barcodes and garbled micro-text that image models love to add. Generate clean, asset-only
+artwork; avoid category nouns that summon packaging furniture (*poster* added a border and a
+date line, *label* added an ingredient panel and a barcode — *mural painting* and *banner* were
+clean); and keep any wordmark near the artwork's centre if it must survive a cylinder wrap — a
+cylinder only shows ~40% of a full-width strip.
 
 ## The graph
 
-`api_graph.json` is the ComfyUI frontend's own `graphToPrompt()` output, exported once — **never
-hand-written**. H3's reference images are an autogrow input that only serializes correctly
-through the frontend, as dotted `ref_images.ref_image_N` keys; a hand-assembled graph drops them
-with no error and silently renders an unreferenced image. The CLI only sets values into the
-exported graph and **refuses to queue if those keys are missing**.
+The CLI queues the bundled `api_graph.json` — the ComfyUI frontend's own `graphToPrompt()`
+export, never hand-written, because H3's reference images only serialize correctly through the
+frontend (as dotted `ref_images.ref_image_N` keys; a hand-assembled graph drops them silently).
+The CLI sets values into it and refuses to queue if those keys are missing. To modify the
+wiring: load `h3_image_edit_mac.json` in the GUI, edit, then re-export with
+`H3EDIT_CDP=<port> h3edit --export <tab-id>`.
 
-To change the wiring: load `h3_image_edit_mac.json` in the ComfyUI GUI, edit there, then
-re-export with `H3EDIT_CDP=<port> h3edit --export <tab-id>` (drives the frontend over CDP).
+## Credits
+
+- **Technique** (one-frame R2V as an image editor): [Patient_Ratio4177](https://www.reddit.com/r/StableDiffusion/comments/1vo1ab3/h3_as_a_singleimage_edit_model/)
+- **Single-image VAE**: [Mamad8/MiniMax-H3-Image-VAE](https://huggingface.co/Mamad8/MiniMax-H3-Image-VAE)
+- **Turbo 8-step LoRA**: [lightx2v/Minimax-h3-Turbo](https://huggingface.co/lightx2v/Minimax-h3-Turbo)
+- **Pruned Ref2VA GGUF**: [Abiray/MiniMax-H3-Pruned-GGUF](https://huggingface.co/Abiray/MiniMax-H3-Pruned-GGUF)
+- **ClipProj projection + loader node**: [NicoLab28/ClipProj-MiniMax-H3](https://huggingface.co/NicoLab28/ClipProj-MiniMax-H3), [nicolab28/ComfyUI-ClipProj](https://github.com/nicolab28/ComfyUI-ClipProj)
+- **Qwen3-VL text encoder**: [Comfy-Org/Qwen3-VL](https://huggingface.co/Comfy-Org/Qwen3-VL)
+- **MiniMax H3** itself: MiniMax, via the [Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3) repack
+
+This repository's contribution is the Apple Silicon port, the compatibility node, the CLI, and
+the measured dial table — not the technique.
 
 ## License
 
